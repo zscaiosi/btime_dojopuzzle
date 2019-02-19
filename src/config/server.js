@@ -1,11 +1,10 @@
 const express = require('express');
+const line = require('../controllers/lineController');
 
 const app = () => {
     server = express();
     // Sets all middlewares
-    server.use('/', (req, res) => {
-
-    });
+    server.use('/', line);
 
     return server;
 };
