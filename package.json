@@ -1,0 +1,22 @@
+{
+  "name": "btime_dojopuzzle",
+  "version": "1.0.0",
+  "description": "Desafio para entrevista btime. Feita por Caio Saldanha.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/main.js",
+    "start": "node ./src/index.js"
+  },
+  "keywords": [
+    "btime"
+  ],
+  "author": "Caio Saldanha",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.0"
+  }
+}
