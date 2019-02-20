@@ -4,7 +4,7 @@ const lineBreaker = require('../Models/LineBreaker');
 router.get('/breakLines/:number', (req, res) => {
     const { phrase } = req.query;
     const { number } = req.params;
-console.log(req.query, req.params)
+
     if (phrase && number) {
         const LineBreaker = new lineBreaker.LineBreaker(number, phrase);
         let newPhrase = LineBreaker.breakLines();

@@ -4,27 +4,41 @@ class LineBreaker {
     constructor(colsNumber, phrase){
         this._colsNumber = colsNumber;
         this._phrase = phrase;
-        this._newPhrase = [[]];
+        this._newPhrase = [];
     }
 
     breakLines(){
         let words = this._phrase.split(" ");
+        let line = '';
         //Checks if there is bigger
         let bigger = words.find( (w, i) => w.length > this._colsNumber);
-console.log(bigger, words)
+        // impossible, one of the words are bigger than max columns
         if (bigger) {
             return null;
         }
-
-        for (let i = 0; i < words.length; i++) {
+        // The last word would not be added, then goes over more than all indexes
+        for (let i = 0; i <= words.length; i++) {
             // Goes over each word and if fits in line, pushes to newPhrase's current element else pushes to new element 
-            if ( (this._newPhrase[i].length + words[i].length) <= this._colsNumber ) {
-                this._newPhrase.push(...this._newPhrase[i], words[i]);
-                console.log("...this._newPhrase[i], words[i]", this._newPhrase[i], words[i]);
+            let msg = words[i];
+            
+            if (!msg) {
+                console.log("!msg", msg)
+                // Iterating over last word
+                this._newPhrase.push(line);
             } else {
-                this._newPhrase.push(words[i]);
-                console.log("pushes to next element", this._newPhrase, words[i]);
+                if (line.length < 1) {
+                    line = msg;
+                    console.log("iterating over ", msg, "first ", line)                
+                } else if (line.length > 0 && (msg.length + 1 + line.length) > this._colsNumber) {
+                    this._newPhrase.push(line);
+                    line = msg;
+                    console.log("iterating over ", msg, "second ", line)
+                } else {
+                    line = line + " " + msg;
+                    console.log("iterating over ", msg, "else ", line)
+                }
             }
+            
         }
 
         return this._newPhrase;
